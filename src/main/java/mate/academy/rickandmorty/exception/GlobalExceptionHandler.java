@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Hidden //annotation was added to avoid conflict with Swagger
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<String>> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()

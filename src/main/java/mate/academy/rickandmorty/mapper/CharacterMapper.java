@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 @Mapper(config = MapperConfig.class)
 public interface CharacterMapper {
 
-    @Mapping(target = "id", expression = "java(Long.valueOf(character.getExternalId()))")
-    @Mapping(target = "externalId", ignore = true)
+    @Mapping(target = "id", source = "dbId")
+    @Mapping(target = "externalId", source = "externalId")
     CharacterDto toDto(CharacterRM character);
 
-    @Mapping(target = "externalId", expression = "java(String.valueOf(dto.id()))")
     @Mapping(target = "dbId", ignore = true)
+    @Mapping(target = "externalId", source = "externalId")
     CharacterRM toEntity(CharacterDto dto);
 }

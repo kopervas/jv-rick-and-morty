@@ -1,6 +1,8 @@
 package mate.academy.rickandmorty.service;
 
 import java.util.List;
+
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.CharacterDto;
 import mate.academy.rickandmorty.mapper.CharacterMapper;
@@ -23,6 +25,11 @@ public class CharacterService {
 
     public CharacterDto getRandomCharacter() {
         List<CharacterRM> characters = characterRepository.findAll();
+
+        if (characters.isEmpty()) {
+            throw new EntityNotFoundException("No characters found in database");
+        }
+
         CharacterRM random = characters.get((int) (Math.random() * characters.size()));
         return characterMapper.toDto(random);
     }

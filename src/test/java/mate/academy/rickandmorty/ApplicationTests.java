@@ -8,11 +8,7 @@ class ApplicationTests {
 
 	@Test
 	void contextLoads() {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+
 	}
 
 }
